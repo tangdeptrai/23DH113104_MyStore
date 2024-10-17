@@ -63,16 +63,16 @@ namespace _23DH113104_MyStore.Controllers
         public ActionResult Edit(int? id)
         {
             return Details(id);
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Category category = db.Categories.Find(id);
-            //if (category == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(category);
+           // if (id == null)
+           // {
+           // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+           // }
+           // Category category = db.Categories.Find(id);
+           // if (category == null)
+           // {
+           //     return HttpNotFound();
+           // }
+           //return View(category);
         }
 
         // POST: Categories/Edit/5
