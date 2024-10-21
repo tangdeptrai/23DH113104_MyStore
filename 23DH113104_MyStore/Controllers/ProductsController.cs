@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _23DH113104_MyStore.Models;
+using _23DH113104_MyStore.Models.ViewModel;
 
 namespace _23DH113104_MyStore.Controllers
 {
@@ -15,10 +16,19 @@ namespace _23DH113104_MyStore.Controllers
         private MyStoreEntities db = new MyStoreEntities();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var products = db.Products.Include(p => p.Category);
-            return View(products.ToList());
+            var model = new ProductSearchVM();
+            var products = db.Products.AsQueryable();
+            if(!string.IsNullOrEmpty(searchTerm))
+            { //Tìm kiếm sản phẩm dựa trên từ khóa
+                products = products.Where(p =>
+                p.ProductName.Contains(searchTerm) ||
+                p.ProductDescription.Contains(searchTerm) ||
+                p.Category.CategoryName.Contains(searchTerm));
+            }
+            model.Products = products.ToList();
+            return View(model);
         }
 
         // GET: Products/Details/5
