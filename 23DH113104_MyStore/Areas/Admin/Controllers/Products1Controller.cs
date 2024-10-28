@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using _23DH113104_MyStore.Models;
+using _23DH113104_MyStore.Models.ViewModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using _23DH113104_MyStore.Models;
-using _23DH113104_MyStore.Models.ViewModel;
 
 namespace _23DH113104_MyStore.Controllers
 {
     public class ProductsController : Controller
     {
-        private MyStoreEntities db = new MyStoreEntities();
+        private MYSTOREEntities db = new MYSTOREEntities();
 
         // GET: Products
         public ActionResult Index(string searchTerm)
         {
             var model = new ProductSearchVM();
             var products = db.Products.AsQueryable();
-            if(!string.IsNullOrEmpty(searchTerm))
-            { //Tìm kiếm sản phẩm dựa trên từ khóa
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                //Tìm kiếm sản phẩm dựa trên từ khóa
                 products = products.Where(p =>
                 p.ProductName.Contains(searchTerm) ||
-                p.ProductDescription.Contains(searchTerm) ||
+                p.ProductDecription.Contains(searchTerm) ||
                 p.Category.CategoryName.Contains(searchTerm));
             }
             model.Products = products.ToList();

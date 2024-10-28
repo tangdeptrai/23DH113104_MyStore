@@ -130,10 +130,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Controllers\AdminHomeController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Products1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,8 +199,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\MyStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyStoreModel.Context.cs</LastGenOutput>
       <DependentUpon>MyStoreModel.edmx</DependentUpon>
+      <LastGenOutput>MyStoreModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\MyStoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -213,6 +213,9 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\PVListProduct.cshtml" />
     <EntityDeploy Include="Models\MyStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MyStoreModel.Designer.cs</LastGenOutput>
@@ -220,9 +223,16 @@
     <Content Include="Models\MyStoreModel.edmx.diagram">
       <DependentUpon>MyStoreModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Models\ViewModel\PVListProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Products1\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products1\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products1\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products1\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products1\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories1\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories1\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories1\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories1\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories1\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -249,23 +259,22 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AdminHome\Index.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Categories\PVCreateEditCategory.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Products\PVCreateEditProduct.cshtml" />
-    <Content Include="Views\Products\PVProdlnfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\PVCreateEditCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\PVCreateEditProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\PVProdlnfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>

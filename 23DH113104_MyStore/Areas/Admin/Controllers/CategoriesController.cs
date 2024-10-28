@@ -8,19 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using _23DH113104_MyStore.Models;
 
-namespace _23DH113104_MyStore.Controllers
+namespace _23DH113104_MyStore.Areas.Admin.Controllers
 {
     public class CategoriesController : Controller
     {
-        private MyStoreEntities db = new MyStoreEntities();
+        private MYSTOREEntities db = new MYSTOREEntities();
 
-        // GET: Categories
+        // GET: Admin/Categories
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
         }
 
-        // GET: Categories/Details/5
+        // GET: Admin/Categories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,65 +35,13 @@ namespace _23DH113104_MyStore.Controllers
             return View(category);
         }
 
-        // GET: Categories/Create
-        //[HttpGet]
+        // GET: Admin/Categories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        //// POST: Categories/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "CategoryID,CategoryName")] Category category)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Categories.Add(category);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(category);
-        //}
-
-        // GET: Categories/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            return Details(id);
-           // if (id == null)
-           // {
-           // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-           // }
-           // Category category = db.Categories.Find(id);
-           // if (category == null)
-           // {
-           //     return HttpNotFound();
-           // }
-           //return View(category);
-        }
-
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName")] Category category)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(category);
-        }
-
-
-
-        // POST: Categories/Create
+        // POST: Admin/Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -110,23 +58,53 @@ namespace _23DH113104_MyStore.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Admin/Categories/Edit/5
+        public ActionResult Edit(int? id)
         {
-           return Details(id);
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Category category = db.Categories.Find(id);
-            //if (category == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(category);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Admin/Categories/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName")] Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(category).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(category);
+        }
+
+        // GET: Admin/Categories/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category category = db.Categories.Find(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
+        // POST: Admin/Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

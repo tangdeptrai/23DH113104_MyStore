@@ -7,21 +7,21 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width" />
     <title>Search</title>
     <style>
-        .search-container, .order-container{
-            padding-top:20px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+        .search-container, .order-container {
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     <!-- Form tìm kiếm -->
-    @using (Html.BeginForm("Index","Products",FormMethod.Get))
-    { 
+    @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+    {
         <div class="forrm-group search-container">
             @Html.TextAreaFor(m => m.SearchTerm, new
             {
@@ -32,8 +32,9 @@
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </div>
     }
-    
-    @*Form kết quả tìm kiếm*@
-    @Html.Partial("ProductListPV", Model)
+    <div>
+        @*Form kết quả tìm kiếm*@
+        @Html.Partial("PVListProduct", Model)
+    </div>
 </body>
 </html>
