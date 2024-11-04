@@ -5,6 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -29,12 +30,61 @@
             placeholder = "Nhập tên, mô tả hoặc chủng loại sản phẩm"
             })
 
+            @* Bổ sung thêm trường tìm kiếm theo khoảng giá *@
+            @Html.TextAreaFor(m => m.MinPrice, new
+            {
+            @class = "form-control",
+            placeholder = "Nhập giá tối thiểu",
+            type = "number"
+            })
+            @Html.TextAreaFor(m => m.MaxPrice, new
+            {
+            @class = "form-control",
+            placeholder = "Nhập giá tối đa",
+            type = "number"
+            })
+
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </div>
+
     }
-    <div>
-        @*Form kết quả tìm kiếm*@
+    <!-- Tùy chọn sắp xếp -->
+<div class="forrm-group search-container">
+    Sắp xêp theo:
+    @Html.ActionLink("Tên tăng dần", "Index", "Products",
+   new
+        {
+            sortOrder = "name_asc",
+        searchTerm = Model.SearchTerm,
+        minPrice = Model.MinPrice,
+        maxPrice = Model.MaxPrice
+   }, null) |
+    @Html.ActionLink("Tên giảm dần", "Index", "Products",
+new
+{
+    sortOrder = "name_desc",
+searchTerm = Model.SearchTerm,
+minPrice = Model.MinPrice,
+maxPrice = Model.MaxPrice
+}, null) |
+    @Html.ActionLink("Gía tăng dần", "Index", "Products",
+new
+    {
+        sortOrder = "price_asc",
+    searchTerm = Model.SearchTerm,
+    minPrice = Model.MinPrice,
+    maxPrice = Model.MaxPrice
+}, null) |
+    @Html.ActionLink("Gía giảm dần", "Index", "Products",
+new
+    {
+        sortOrder = "price_desc",
+    searchTerm = Model.SearchTerm,
+    minPrice = Model.MinPrice,
+    maxPrice = Model.MaxPrice
+}, null) |
+</div>
+        @* Form kết quả tìm kiếm *@
         @Html.Partial("PVListProduct", Model)
-    </div>
 </body>
 </html>
