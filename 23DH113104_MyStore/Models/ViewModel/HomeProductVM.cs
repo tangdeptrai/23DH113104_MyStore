@@ -17,9 +17,9 @@ namespace _23DH113104_MyStore.Models.ViewModel
         public int PageSize { get; set; } = 10;
 
         //danh sách nổi bật
-        public List<Product> FeaturedProducts { get; set; }
+        public List<Product> FeaturedProducts { get; set; } = new List<Product>();
 
         //danh sách sane phẩm phân trang
-        public PagedList.IPagedList<Product> Products { get; set; }
+        public PagedList.IPagedList<Product> NewProducts { get; set; }
     }
 }

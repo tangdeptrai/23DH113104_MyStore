@@ -35,8 +35,18 @@ namespace _23DH113104_MyStore.Controllers
                 //Lấy top 10 sản phẩm bán chạy nhất
                 model.FeaturedProducts = products.OrderByDescending(p => p.OrderDetails.Count()).Take(10).ToList();
                 //Lấy 20 sản phẩm bán ế nhất và phân trang
-                model.Products = products.OrderBy(p => p.OrderDetails.Count()).Take(20).ToPagedList(pageName, pageSize);
+                model.NewProducts = products.OrderBy(p => p.OrderDetails.Count()).Take(20).ToPagedList(page ?? 1, 6);
                 //model.Products = products.ToList();
+                if (model.FeaturedProducts == null)
+                {
+                    // Ghi log hoặc debug
+                    Console.WriteLine("FeaturedProducts is null");
+                }
+                else
+                {
+                    Console.WriteLine($"FeaturedProducts has {model.FeaturedProducts.Count} items");
+                }
+
                 return View(model);
             }
         }

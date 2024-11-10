@@ -1,0 +1,65 @@
+﻿@model _23DH113104_MyStore.Models.ViewModel.HomeProductVM
+@using PagedList.Mvc
+
+<link href="~/Content/myStyle/CustomerHome.css" rel="stylesheet" />
+
+<!-- Hiển thị danh sách sản phẩm -->
+@if (Model.NewProducts != null && Model.NewProducts.Any())
+{
+    <section class="container-fluid ListProducts">
+        <h2>Sản phẩm mới</h2>
+        <ul class="list-container">
+            @foreach (var product in Model.NewProducts)
+            {
+                <li class="product-item">
+                    <div>
+                        <a href="@Url.Action("ProductDetail", "Home", new { id = product.ProductID })">
+                            <img src="@Html.DisplayFor(modelItem => product.ProductImage)" />
+                        </a>
+                        <p class="prodPrice">@product.ProductPrice</p>
+                        <p class="prodName">@product.ProductName</p>
+                        <p class="prodSale">
+                            Đã bán:&nbsp;@product.OrderDetails.Count
+                        </p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </section>
+    <!-- PHẦN SẢN PHẨM MỚI -->
+    <section class="productList">
+        <h2>Danh sách sản phẩm</h2>
+        <ul class="list-container">
+            <li class="product-item">
+                <img src="~/Content/images/images.jpg" />
+                <h3>Acer Nitro 5 Tiger</h3>
+                <p class="prodDescription">Mỏng nhẹ, giá sinh viên</p>
+                <p class="prodPrice">9.999.999đ</p>
+            </li>
+            <li class="product-item">
+                <img src="~/Content/images/images.jpg" />
+                <h3>HP 14s DQ màu bạc</h3>
+                <p class="prodDescription">Cấu hình mạnh, phù hợp game thủ</p>
+                <p class="prodPrice">8.999.999đ</p>
+            </li>
+            <li class="product-item">
+                <img src="~/Content/images/images.jpg" />
+                <h3>Thinkpad X1504ZA</h3>
+                <p class="prodDescription">Phong cách doanh nhân</p>
+                <p class="prodPrice">29.999.999đ</p>
+            </li>
+        </ul>
+    </section>
+    <!-- Hiển thị phân trang -->
+    <div class="pagination-container">
+        @Html.PagedListPager(Model.NewProducts, page => Url.Action("Index", new
+        {
+            page,
+            searchTerm = Model.SearchTerm
+        }))
+    </div>
+}
+else
+{
+    <p>Nội dung khác nếu không có sản phẩm mới</p>
+}

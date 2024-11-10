@@ -200,6 +200,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\myStyle\CustomerHome.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -230,7 +231,6 @@
     <Content Include="Models\MyStoreModel.edmx.diagram">
       <DependentUpon>MyStoreModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Products\_PVFeatureProduct.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -270,6 +270,8 @@
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Products\PVCreateEditProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Products\PVProdlnfo.cshtml" />
+    <Content Include="Views\AdminHome\_PVFeatureProduct.cshtml" />
+    <Content Include="Views\AdminHome\_PVNewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

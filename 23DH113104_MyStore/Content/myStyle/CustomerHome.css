@@ -1,0 +1,144 @@
+﻿/*Style cho phần BANNER*/
+#banner {
+    background-image: url('../content/images/banner1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-content {
+    text-align: center;
+}
+
+.banne-content h2 {
+    font-size: 2.5rem;
+}
+
+.banner-content p {
+    font-size: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #0094ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#featureProd {
+    text-align: center;
+}
+
+    #featureProd h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+.prodContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.product-item {
+    width: 200px;
+}
+
+    .product-item h3 {
+        font-size: 16px;
+        margin: 10px 0px;
+    }
+
+    .product-item img {
+        max-width: 150px;
+    }
+
+.prodDescription {
+    font: arial;
+    font-size: 10px;
+    color: black;
+    color: lightgray;
+}
+
+.prodPrice {
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+}
+/* Style cho phần SEARCH */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #808080;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: brown;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+    .search-button:hover {
+        background-color: #555;
+    }
+
+.searchProd {
+    text-align: center;
+}
+
+    .searchProd h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: brown;
+    }
+/* Style của FEATURE PRODUCT */
+.featureProd {
+    text-align: left;
+}
+
+.feature-container {
+    justify-content: center;
+    display: flex;
+    overflow-x: auto; /* cho phép cuộn ngang */
+    scroll-snap-type: x mandatory;
+}
+
+.fproduct-item { /* hiển thị dạng slider */
+    width: 160px; /* điều chỉnh theo độ rộng màn hình */
+    max-height: 180px;
+    margin: 10px;
+    gap: 5px; /* khoảng cách giữa 2 item */
+    flex: 0 0 auto; /* để các sản phẩm không co giãn */
+    scroll-snap-align: start; /* để các sản phẩm dừng lại ở đầu khi cuộn */
+}
+
+    .fproduct-item img {
+        padding: 5px;
+        max-height: 160px;
+        vertical-align: central;
+        background-color: transparent;
+    }
+
+/* Style của LIST PRODUCT */
+.listProduct {
+    text-align: left;
+}
+
+.list-container {
+    list-style-type: none;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
