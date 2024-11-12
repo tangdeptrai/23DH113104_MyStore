@@ -1,0 +1,101 @@
+﻿@model _23DH113104_MyStore.Models.ViewModel.CheckoutVM
+@{
+    ViewBag.Title = "Đặt hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    function enableAddressEdit() {
+        document.getElementById("shippingAddress").removeAttribute("readonly");
+        document.getElementById("newAddressGroup").style.display = "block";
+    }
+    function updateShippingAddress() {
+        var newAddress = document.getElementById("newShippingAddress").value;
+        if (newAddress) {
+            document.getElementById("shippingAddress").value = newAddress;
+        }
+    }
+</script>
+<h2>ĐẶT HÀNG</h2>
+@using (Html.BeginForm("Checkout", "Order", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h3>Thông tin đơn hàng</h3>
+    <div class="form-group">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td><img src="@item.ProductName" /></td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@item.TotalPrice</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Shipping Address
+    </label>
+    <div class="col-md-8">
+        <input type="text" class="form-control" id="ShippingAddress"
+               data-val="true" data-val-required="The Shipping Address field is required." />
+        <span class="field-validation-error" data-valmsg-for="ShippingAddress" data-valmsg-replace="true"></span>
+        <button type="button" class="btn btn-link" onclick="enableAddressEdit()">Chỉnh sửa</button>
+    </div>
+</div>
+<div class="form-group" id="noteShippingGroup" style="display:none;">
+    <div class="col-md-8">
+        <input type="text" id="noteShippingAddress" class="form-control" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Phương thức giao hàng
+    </label>
+    <div class="col-md-8">
+        <input type="radio" name="ShippingMethod" value="Giao hàng nhanh" /> Giao hàng nhanh
+        <input type="radio" name="ShippingMethod" value="Giao hàng tiết kiệm" /> Giao hàng tiết kiệm
+        <span class="field-validation-error" data-valmsg-for="ShippingMethod"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Phương thức thanh toán
+    </label>
+    <div class="col-md-8">
+        <input type="radio" name="PaymentMethod" value="Tiền mặt" /> Tiền mặt
+        <input type="radio" name="PaymentMethod" value="Paypal" /> Paypal
+        <input type="radio" name="PaymentMethod" value="Qua trước trả sau" /> Qua trước trả sau
+        <span class="field-validation-error" data-valmsg-for="PaymentMethod"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Tổng tiền
+    </label>
+    <div class="col-md-8">
+        <input type="text" class="form-control" readonly="readonly" id="TotalAmount" />
+        <span class="field-validation-error" data-valmsg-for="TotalAmount"></span>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-8">
+        <input type="submit" value="Đặt hàng" class="btn btn-default" onclick="updateShippingAddress" />
+    </div>
+</div>
+
+
+

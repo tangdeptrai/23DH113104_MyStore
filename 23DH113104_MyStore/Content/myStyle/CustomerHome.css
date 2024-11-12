@@ -1,33 +1,55 @@
-﻿/*Style cho phần BANNER*/
-#banner {
-    background-image: url('../content/images/banner1.jpg');
+﻿#banner {
+    background-image: url('../image/banner.jpg');
     background-size: cover;
     background-position: center;
-    height: 200px;
+    height: 300px; /* Điều chỉnh chiều cao theo nhu cầu */
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.banner-content {
+    position: relative;
+    color: white; /* Đảm bảo văn bản dễ đọc */
     text-align: center;
 }
 
-.banne-content h2 {
-    font-size: 2.5rem;
+    #banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Lớp phủ bán trong suốt để cải thiện khả năng đọc */
+    }
+
+.banner-content {
+    position: relative;
+    z-index: 1; /* Đảm bảo nội dung nằm trên nền */
 }
 
-.banner-content p {
-    font-size: 2rem;
-}
+    .banner-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .banner-content p {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
 
 .btn {
     display: inline-block;
-    padding: 5px 20px;
-    background-color: #0094ff;
+    padding: 10px 20px;
+    background-color: #ff6600; /* Màu nút nổi bật */
     text-decoration: none;
     font-weight: bold;
+    color: white;
+    border-radius: 5px;
 }
+
+    .btn:hover {
+        background-color: #ff4500;
+    }
+
 
 #featureProd {
     text-align: center;
@@ -69,6 +91,7 @@
     color: black;
     font-weight: bold;
 }
+
 /* Style cho phần SEARCH */
 .search-container {
     display: flex;
@@ -81,6 +104,7 @@
     padding: 10px;
     border: 1px solid #808080;
     border-radius: 5px 0 0 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle box-shadow */
 }
 
 .search-button {
@@ -89,6 +113,8 @@
     border: none;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle box-shadow */
 }
 
     .search-button:hover {
@@ -104,6 +130,7 @@
         margin-bottom: 20px;
         color: brown;
     }
+
 /* Style của FEATURE PRODUCT */
 .featureProd {
     text-align: left;
@@ -138,7 +165,54 @@
 }
 
 .list-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng nếu không đủ chỗ */
+    justify-content: center; /* Căn giữa các sản phẩm */
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+    padding: 0;
     list-style-type: none;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
+
+.product-item {
+    flex: 1 1 200px; /* Đặt kích thước cơ bản cho mỗi sản phẩm */
+    max-width: 200px; /* Đặt kích thước tối đa cho mỗi sản phẩm */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng cho sản phẩm */
+    border-radius: 5px; /* Bo góc cho sản phẩm */
+    overflow: hidden; /* Ẩn phần thừa nếu có */
+    text-align: center; /* Căn giữa nội dung */
+    background-color: #fff; /* Màu nền trắng */
+    padding: 10px; /* Thêm khoảng cách bên trong */
+}
+
+    .product-item img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 10px; /* Căn giữa ảnh và thêm khoảng cách dưới */
+    }
+
+.prodPrice {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.prodName {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.prodSale {
+    font-size: 0.9rem;
+    color: #999;
+    margin: 5px 0;
+}
+
+.pagination-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
 

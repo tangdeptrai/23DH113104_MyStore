@@ -1,0 +1,146 @@
+﻿@model _23DH113104_MyStore.Models.ViewModel.HomeProductVM
+@using PagedList.Mvc
+
+<link href="~/Content/myStyle/CustomerHome.css" rel="stylesheet" />
+<style>
+    #banner {
+        background-image: url('../../../../content/image/banner1.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 300px; /* Điều chỉnh chiều cao theo nhu cầu */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: white; /* Đảm bảo văn bản dễ đọc */
+        text-align: center;
+    }
+
+        #banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Lớp phủ bán trong suốt để cải thiện khả năng đọc */
+        }
+
+    .banner-content {
+        position: relative;
+        z-index: 1; /* Đảm bảo nội dung nằm trên nền */
+    }
+
+        .banner-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .banner-content p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ff6600; /* Màu nút nổi bật */
+        text-decoration: none;
+        font-weight: bold;
+        color: white;
+        border-radius: 5px;
+    }
+
+        .btn:hover {
+            background-color: #ff4500;
+        }
+
+    .list-container {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng nếu không đủ chỗ */
+        justify-content: center; /* Căn giữa các sản phẩm */
+        gap: 20px; /* Khoảng cách giữa các sản phẩm */
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .product-item {
+        flex: 1 1 200px; /* Đặt kích thước cơ bản cho mỗi sản phẩm */
+        max-width: 200px; /* Đặt kích thước tối đa cho mỗi sản phẩm */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng cho sản phẩm */
+        border-radius: 5px; /* Bo góc cho sản phẩm */
+        overflow: hidden; /* Ẩn phần thừa nếu có */
+        text-align: center; /* Căn giữa nội dung */
+        background-color: #fff; /* Màu nền trắng */
+        padding: 10px; /* Thêm khoảng cách bên trong */
+    }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px; /* Căn giữa ảnh và thêm khoảng cách dưới */
+        }
+
+    .prodPrice {
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+
+    .prodName {
+        font-size: 1rem;
+        color: #666;
+        margin: 5px 0;
+    }
+
+    .prodSale {
+        font-size: 0.9rem;
+        color: #999;
+        margin: 5px 0;
+    }
+
+    .pagination-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+</style>
+<!-- Hiển thị danh sách sản phẩm -->
+@if (Model.NewProducts != null && Model.NewProducts.Any())
+{
+    <section class="container-fluid ListProducts">
+        <h2>Sản phẩm mới</h2>
+        <ul class="list-container">
+            @foreach (var product in Model.NewProducts)
+            {
+                <li class="product-item">
+                    <div>
+                        <a href="@Url.Action("ProductDetail", "Home", new { id = product.ProductID })">
+                            <img src="@Html.DisplayFor(modelItem => product.ProductImage)" />
+                        </a>
+                        <p class="prodPrice">@product.ProductPrice</p>
+                        <p class="prodName">@product.ProductName</p>
+                        <p class="prodSale">
+                            Đã bán:&nbsp;@product.OrderDetails.Count
+                        </p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </section>
+   
+    <!-- Hiển thị phân trang -->
+    <div class="pagination-container">
+        @Html.PagedListPager(Model.NewProducts, page => Url.Action("Index", new
+        {
+            page,
+            searchTerm = Model.SearchTerm
+        }))
+    </div>
+}
+else
+{
+    <p>Nội dung khác nếu không có sản phẩm mới</p>
+}
